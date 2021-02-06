@@ -1,0 +1,37 @@
+{
+  "name": "react-animated-text-builders-example",
+  "homepage": ".",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ../node_modules/react-scripts/bin/react-scripts.js start",
+    "build": "dotenv -e .env.development node ../node_modules/react-scripts/bin/react-scripts.js build",
+    "test": "node ../node_modules/react-scripts/bin/react-scripts.js test",
+    "eject": "node ../node_modules/react-scripts/bin/react-scripts.js eject"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
+    "dotenv": "^8.2.0",
+    "jsx-to-string": "^1.4.0",
+    "react": "file:../node_modules/react",
+    "react-animated-text-builders": "file:..",
+    "react-dom": "file:../node_modules/react-dom",
+    "react-element-to-jsx-string": "^14.3.2",
+    "react-scripts": "file:../node_modules/react-scripts",
+    "react-syntax-highlighter": "^15.4.3"
+  },
+  "devDependencies": {
+    "@babel/plugin-syntax-object-rest-spread": "^7.8.3",
+    "dotenv-cli": "^4.0.0"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
