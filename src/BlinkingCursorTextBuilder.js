@@ -11,7 +11,8 @@ export default function BlinkingCursorTextBuilder(props) {
     blinkingSpeed: PropTypes.number,
     cursorComponent: PropTypes.element,
     textStyle: PropTypes.object,
-    blinkTimeAfterFinish: PropTypes.number
+    blinkTimeAfterFinish: PropTypes.number,
+    onBlinkingFinished: PropTypes.func
   }
 
   const [content, setContent] = useState([])
@@ -42,6 +43,10 @@ export default function BlinkingCursorTextBuilder(props) {
           animation: 'opacityOnToOff ' + blinkingSpeed + 'ms linear',
           animationIterationCount: 'infinite'
         }
+
+  const blinkFinishedCallback = props.onBlinkingFinished
+    ? props.onBlinkingFinished
+    : () => {}
 
   let cursor = <div style={cursorStyle} />
   if (props.cursorComponent) cursor = props.cursorComponent
@@ -84,12 +89,14 @@ export default function BlinkingCursorTextBuilder(props) {
       if (props.blinkTimeAfterFinish === 0 || !props.blinkTimeAfterFinish) {
         // stop blinking
         setFinishedBlink(true)
+        blinkFinishedCallback()
         return setIsBlinking(false)
       } else if (props.blinkTimeAfterFinish === -1) return
       else
         setTimeout(() => {
           setIsBlinking(false)
           setFinishedBlink(true)
+          blinkFinishedCallback()
         }, props.blinkTimeAfterFinish)
 
       setCounter(counter + 1)

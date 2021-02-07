@@ -88,6 +88,7 @@ export default function BlinkingTextBuilderExamples(props) {
       <BlinkingCursorTextBuilder
         blinkTimeAfterFinish={1000}
         blinkingSpeed={200}
+        onBlinkingFinished = { ()=> console.log("Blinking finished! ")}
       >
         Fast blinking
       </BlinkingCursorTextBuilder>

@@ -46,7 +46,7 @@ Name | Type | Function
 `blinkingSpeed` | PropTypes.number | Blinking speed in ms
 `cursorComponent` | PropTypes.element | Custom cursor component (disables `cursorStyle`)
 `textStyle` | PropTypes.object | Styles to be applied to the (string) child
-
+`onBlinkingFinished` | PropTypes.func | Callback that is fired when the blinking ended.
 ## License
 
 MIT © [movcmpret](https://github.com/movcmpret)
