@@ -4,100 +4,93 @@ import PropTypes from 'prop-types' // ES6
 
 import './styles-builders.css'
 
-export default function BlinkingCursorTextBuilder(props) {
-  BlinkingCursorTextBuilder.propTypes = {
-    timeout: PropTypes.number,
-    cursorStyle: PropTypes.object,
-    blinkingSpeed: PropTypes.number,
-    cursorComponent: PropTypes.element,
-    textStyle: PropTypes.object,
-    blinkTimeAfterFinish: PropTypes.number,
-    onBlinkingFinished: PropTypes.func
-  }
+const defaultCursorStyle = {
+  width: '9px',
+  height: '18px',
+  background: '#a3a3a3'
+}
 
+export default function BlinkingCursorTextBuilder({
+  timeout,
+  cursorStyle,
+  blinkingSpeed,
+  cursorComponent,
+  textStyle,
+  blinkTimeAfterFinish,
+  onBlinkingFinished,
+  children,
+  style
+}) {
   const [content, setContent] = useState([])
   const [isBlinking, setIsBlinking] = useState(true)
   const [counter, setCounter] = useState(0)
   const [finishedBlink, setFinishedBlink] = useState(false)
 
-  const timeout = props.timeout ? props.timeout : 100
-
-  const defaultCursorStyle = {
-    width: '9px',
-    height: '18px',
-    background: '#a3a3a3'
-  }
-  const cursorStyle = props.cursorStyle
-    ? { ...defaultCursorStyle, ...props.cursorStyle }
+  const cursorStyleC = cursorStyle
+    ? { ...defaultCursorStyle, ...cursorStyle }
     : defaultCursorStyle
 
-  const blinkingSpeed = props.blinkingSpeed
-    ? props.blinkingSpeed
-    : props.blinkingSpeed === -1
-    ? -1
-    : 650
+  const blinkingSpeedC = blinkingSpeed || (blinkingSpeed === -1 ? -1 : 650)
   const blinkingProp =
-    blinkingSpeed === -1
+    blinkingSpeedC === -1
       ? null
       : {
-          animation: 'opacityOnToOff ' + blinkingSpeed + 'ms linear',
+          animation: 'opacityOnToOff ' + blinkingSpeedC + 'ms linear',
           animationIterationCount: 'infinite'
         }
 
-  const blinkFinishedCallback = props.onBlinkingFinished
-    ? props.onBlinkingFinished
-    : () => {}
+  const blinkFinishedCallback = onBlinkingFinished
 
-  let cursor = <div style={cursorStyle} />
-  if (props.cursorComponent) cursor = props.cursorComponent
+  let cursor = <div style={cursorStyleC} />
+  if (cursorComponent) cursor = cursorComponent
 
-  let textStyle = {
+  let textStyleC = {
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
     margin: '0 auto'
   }
-  if (props.textStyle) textStyle = { ...textStyle, ...props.textStyle }
+  if (textStyle) textStyleC = { ...textStyleC, ...textStyle }
   useEffect(() => {
-    const children = props.children ? props.children : ''
-    if (counter < children.length) {
-      const letter = children[counter]
+    const childrenC = children || ''
+    if (counter < childrenC.length) {
+      const letter = childrenC[counter]
       setTimeout(() => {
         let comp = (
           <div
             style={{ display: 'flex' }}
-            key={counter + '_' + children[counter]}
+            key={counter + '_' + childrenC[counter]}
           >
-            {props.children[counter]}
+            {childrenC[counter]}
           </div>
         )
         if (letter === ' ')
           comp = (
             <div
               style={{ marginLeft: ' 5px', display: 'flex' }}
-              key={counter + '_' + children[counter]}
+              key={counter + '_' + childrenC[counter]}
             >
-              {children[counter]}
+              {childrenC[counter]}
             </div>
           )
         setContent(content.concat(comp))
       }, timeout)
       setCounter(counter + 1)
     }
-    if (counter === children.length - 1) {
+    if (counter === childrenC.length - 1) {
       // last element processed
-      if (props.blinkTimeAfterFinish === 0 || !props.blinkTimeAfterFinish) {
+      if (blinkTimeAfterFinish === 0 || !blinkTimeAfterFinish) {
         // stop blinking
         setFinishedBlink(true)
         blinkFinishedCallback()
         return setIsBlinking(false)
-      } else if (props.blinkTimeAfterFinish === -1) return
+      } else if (blinkTimeAfterFinish === -1) return
       else
         setTimeout(() => {
           setIsBlinking(false)
           setFinishedBlink(true)
           blinkFinishedCallback()
-        }, props.blinkTimeAfterFinish)
+        }, blinkTimeAfterFinish)
 
       setCounter(counter + 1)
     }
@@ -105,7 +98,7 @@ export default function BlinkingCursorTextBuilder(props) {
 
   const textWrappingComponent = (
     <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
-      <div style={textStyle}>
+      <div style={textStyleC}>
         {content}
         {finishedBlink ? null : (
           <div style={isBlinking ? blinkingProp : {}}>{cursor}</div>
@@ -114,5 +107,20 @@ export default function BlinkingCursorTextBuilder(props) {
     </div>
   )
 
-  return <div style={props.style}>{textWrappingComponent}</div>
+  return <div style={style}>{textWrappingComponent}</div>
+}
+
+BlinkingCursorTextBuilder.propTypes = {
+  timeout: PropTypes.number,
+  cursorStyle: PropTypes.object,
+  blinkingSpeed: PropTypes.number,
+  cursorComponent: PropTypes.element,
+  textStyle: PropTypes.object,
+  blinkTimeAfterFinish: PropTypes.number,
+  onBlinkingFinished: PropTypes.func
+}
+
+BlinkingCursorTextBuilder.defaultProps = {
+  timeout: 100,
+  onBlinkingFinished: () => {}
 }
