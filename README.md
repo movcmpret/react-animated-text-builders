@@ -60,7 +60,7 @@ Name | Type | Function | Default
 `textStyle` | PropTypes.object | Styles to be applied to the (string) child | -
 `onBlinkingFinished` | PropTypes.func | Callback that is fired when the blinking ended. | -
 
-### BlinkingCursorTextBuilder
+### FloatingLettersTextBuilder
 Name | Type | Function | Default
 ------------ | ------------- | -------------| -------------
 `children` | PropTypes.string.isRequired | Text to be displayed |-
