@@ -1,15 +1,9 @@
 import React from 'react';
 
-function FloatingLettersTextBuilders(props) {
+export function FloatingLettersTextBuilder({}) {
 
 
+  return <div>TBD</div>
 
-
-  return (
-    <div>
-
-    </div>
-  );
 }
 
-export default FloatingLettersTextBuilders;
