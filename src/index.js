@@ -1,4 +1,4 @@
 import BlinkingCursorTextBuilder from './BlinkingCursorTextBuilder'
-import { FloatingLettersTextBuilder } from './FloatingLettersTextBuilder'
+import { FloatingLettersTextBuilder,FLOATING_STYLE } from './FloatingLettersTextBuilder'
 require('./index.css')
-export { BlinkingCursorTextBuilder, FloatingLettersTextBuilder }
+export { BlinkingCursorTextBuilder, FloatingLettersTextBuilder, FLOATING_STYLE}
