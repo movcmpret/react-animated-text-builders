@@ -5,10 +5,10 @@ import FloatingLettersTextBuilderExample from "./FloatingLettersTextBuilderExamp
 
 const App = () => {
 
-  return <>
+  return <div style={{display :"flex", flexDirection :"row"}}>
     <BlinkingTextBuilderExamples/>
     <FloatingLettersTextBuilderExample/>
-    </>
+    </div>
 }
 
 export default App
