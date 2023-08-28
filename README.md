@@ -6,9 +6,9 @@
 
 ## Demo
 
-![gif](https://movcmpret.com/demo/animated-text-builders/blink.gif)
+![gif](https://www.movcmpret.com/demo/animated-text-builders/blink.gif)
 
-![gif](https://movcmpret.com/demo/animated-text-builders/floating.gif)
+![gif](https://www.movcmpret.com/demo/animated-text-builders/floating.gif)
 
 [www.movcmpret.com/demo/animated-text-builders/](https://www.movcmpret.com/demo/animated-text-builders/)
 
