@@ -10,7 +10,7 @@
 
 ![gif](https://movcmpret.com/demo/animated-text-builders/floating.gif)
 
-[movcmpret.com/demo/animated-text-builders/](https://movcmpret.com/demo/animated-text-builders/)
+[www.movcmpret.com/demo/animated-text-builders/](https://www.movcmpret.com/demo/animated-text-builders/)
 
 
 ## Install
