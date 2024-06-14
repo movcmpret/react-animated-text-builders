@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ../node_modules/react-scripts/bin/react-scripts.js start",
-    "build": "dotenv -e .env.development node ../node_modules/react-scripts/bin/react-scripts.js build",
+    "start": "export SET NODE_OPTIONS=--openssl-legacy-provider && node ../node_modules/react-scripts/bin/react-scripts.js start",
+    "build": "export SET NODE_OPTIONS=--openssl-legacy-provider && dotenv -e .env.development node ../node_modules/react-scripts/bin/react-scripts.js build",
     "test": "node ../node_modules/react-scripts/bin/react-scripts.js test",
     "eject": "node ../node_modules/react-scripts/bin/react-scripts.js eject"
   },
